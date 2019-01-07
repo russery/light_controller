@@ -72,7 +72,7 @@ GenerateClassCluster=0
 DocumentUniqueId=XAVNFFAC
 
 [Document3]
-DocumentPath=..\..\altium-libraries\RUssery.PcbLib
+DocumentPath=..\..\altium_libraries\RUssery.SchLib
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -86,10 +86,10 @@ ClassGenCCAutoRoomEnabled=1
 ClassGenNCAutoScope=None
 DItemRevisionGUID=
 GenerateClassCluster=0
-DocumentUniqueId=
+DocumentUniqueId=SXUECHLB
 
 [Document4]
-DocumentPath=..\..\altium-libraries\RUssery.SchLib
+DocumentPath=..\..\altium_libraries\RUssery.PcbLib
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -103,7 +103,7 @@ ClassGenCCAutoRoomEnabled=1
 ClassGenNCAutoScope=None
 DItemRevisionGUID=
 GenerateClassCluster=0
-DocumentUniqueId=
+DocumentUniqueId=RQPANSNK
 
 [Configuration1]
 Name=Sources
@@ -642,6 +642,11 @@ OutputName6=Footprint Comparison Report
 OutputDocumentPath6=
 OutputVariantName6=
 OutputDefault6=0
+OutputType7=BOM_Violations
+OutputName7=BOM Checks Report
+OutputDocumentPath7=
+OutputVariantName7=
+OutputDefault7=0
 
 [OutputGroup9]
 Name=Export Outputs
@@ -693,11 +698,6 @@ OutputName9=Specctra Design PCB
 OutputDocumentPath9=
 OutputVariantName9=
 OutputDefault9=0
-OutputType10=Web ReviewOutputName
-OutputName10=Web Review Data
-OutputDocumentPath10=
-OutputVariantName10=
-OutputDefault10=0
 
 [OutputGroup10]
 Name=PostProcess Outputs
@@ -827,6 +827,7 @@ Type113=1
 Type114=1
 Type115=1
 Type116=1
+Type117=1
 
 [Difference Levels]
 Type1=1
@@ -894,6 +895,7 @@ Type62=1
 Type63=1
 Type64=1
 Type65=1
+Type66=1
 
 [Electrical Rules Check]
 Type1=1
@@ -1062,6 +1064,66 @@ NetClassSeparateForBusSections=0
 SelectedOnly=0
 UpdateVariants=1
 PartTypes=0
+ComponentLibIdentifierKind0=Library Name And Type
+ComponentLibraryIdentifier0=RUssery.SchLib
+ComponentDesignItemID0=BAT-HLD-001
+ComponentSymbolReference0=BAT-HLD-001
+ComponentUpdate0=0
+ComponentIsDeviceSheet0=0
+ComponentLibIdentifierKind1=Library Name And Type
+ComponentLibraryIdentifier1=RUssery.SchLib
+ComponentDesignItemID1=CAPACITOR
+ComponentSymbolReference1=CAPACITOR
+ComponentUpdate1=0
+ComponentIsDeviceSheet1=0
+ComponentLibIdentifierKind2=Library Name And Type
+ComponentLibraryIdentifier2=RUssery.SchLib
+ComponentDesignItemID2=CHIP ANTENNA
+ComponentSymbolReference2=CHIP ANTENNA
+ComponentUpdate2=0
+ComponentIsDeviceSheet2=0
+ComponentLibIdentifierKind3=Library Name And Type
+ComponentLibraryIdentifier3=RUssery.SchLib
+ComponentDesignItemID3=CRYSTAL
+ComponentSymbolReference3=CRYSTAL
+ComponentUpdate3=0
+ComponentIsDeviceSheet3=0
+ComponentLibIdentifierKind4=Library Name And Type
+ComponentLibraryIdentifier4=RUssery.SchLib
+ComponentDesignItemID4=INDUCTOR
+ComponentSymbolReference4=INDUCTOR
+ComponentUpdate4=0
+ComponentIsDeviceSheet4=0
+ComponentLibIdentifierKind5=Library Name And Type
+ComponentLibraryIdentifier5=RUssery.SchLib
+ComponentDesignItemID5=MICRF113YM6-TR
+ComponentSymbolReference5=MICRF113YM6-TR
+ComponentUpdate5=1
+ComponentIsDeviceSheet5=0
+ComponentLibIdentifierKind6=Library Name And Type
+ComponentLibraryIdentifier6=RUssery.SchLib
+ComponentDesignItemID6=PIC10F202T
+ComponentSymbolReference6=PIC10F202T
+ComponentUpdate6=1
+ComponentIsDeviceSheet6=0
+ComponentLibIdentifierKind7=Library Name And Type
+ComponentLibraryIdentifier7=RUssery.SchLib
+ComponentDesignItemID7=PUSHBUTTON-SPST-4Term
+ComponentSymbolReference7=PUSHBUTTON-SPST-4Term
+ComponentUpdate7=0
+ComponentIsDeviceSheet7=0
+ComponentLibIdentifierKind8=Library Name And Type
+ComponentLibraryIdentifier8=RUssery.SchLib
+ComponentDesignItemID8=RESISTOR
+ComponentSymbolReference8=RESISTOR
+ComponentUpdate8=0
+ComponentIsDeviceSheet8=0
+ComponentLibIdentifierKind9=Library Name And Type
+ComponentLibraryIdentifier9=RUssery.SchLib
+ComponentDesignItemID9=TESTPOINT
+ComponentSymbolReference9=TESTPOINT
+ComponentUpdate9=0
+ComponentIsDeviceSheet9=0
 FullReplace=1
 UpdateDesignatorLock=1
 UpdatePartIDLock=1
@@ -1075,11 +1137,86 @@ RemoveParameters=0
 AddModels=1
 RemoveModels=1
 UpdateCurrentModels=1
+ParameterName0=Capacitance
+ParameterUpdate0=1
+ParameterName1=Case
+ParameterUpdate1=1
+ParameterName2=Comment
+ParameterUpdate2=1
+ParameterName3=Component Kind
+ParameterUpdate3=1
+ParameterName4=ComponentLink1Description
+ParameterUpdate4=1
+ParameterName5=ComponentLink1URL
+ParameterUpdate5=1
+ParameterName6=ComponentLink2Description
+ParameterUpdate6=1
+ParameterName7=ComponentLink2URL
+ParameterUpdate7=1
+ParameterName8=Description
+ParameterUpdate8=1
+ParameterName9=Frequency
+ParameterUpdate9=1
+ParameterName10=Inductance
+ParameterUpdate10=1
+ParameterName11=Library Reference
+ParameterUpdate11=1
+ParameterName12=Package / Case
+ParameterUpdate12=1
+ParameterName13=Part Number
+ParameterUpdate13=1
+ParameterName14=Power (Watts)
+ParameterUpdate14=1
+ParameterName15=Resistance
+ParameterUpdate15=1
+ParameterName16=Temperature Coefficient
+ParameterUpdate16=1
+ParameterName17=Tolerance
+ParameterUpdate17=1
+ModelTypeGroup0=PCBLIB
+ModelTypeUpdate0=1
+ModelType0=PCBLIB
+ModelName0=ANT-2.4-CHP
+ModelUpdate0=1
+ModelType1=PCBLIB
+ModelName1=BAT-HLD-001_BAT-HLD-001(Primary)
+ModelUpdate1=1
+ModelType2=PCBLIB
+ModelName2=CAP_0603
+ModelUpdate2=1
+ModelType3=PCBLIB
+ModelName3=CAP_0805
+ModelUpdate3=1
+ModelType4=PCBLIB
+ModelName4=PAD_40MIL
+ModelUpdate4=1
+ModelType5=PCBLIB
+ModelName5=RES_0603
+ModelUpdate5=1
+ModelType6=PCBLIB
+ModelName6=SOT-23-OT6_L
+ModelUpdate6=1
+ModelType7=PCBLIB
+ModelName7=SOT-23-OT6_M
+ModelUpdate7=1
+ModelType8=PCBLIB
+ModelName8=SOT-23-OT6_N
+ModelUpdate8=1
+ModelType9=PCBLIB
+ModelName9=SWITCH_TACTILE_6MM
+ModelUpdate9=1
+ModelType10=PCBLIB
+ModelName10=XTAL_ECS-135.6-20-3X-TR
+ModelUpdate10=1
 
 [DatabaseUpdateOptions]
 SelectedOnly=0
 UpdateVariants=1
 PartTypes=0
+
+[NetInfos]
+Net1=NetName=BATT|NetColor=$000099FF
+Net2=NetName=GND|NetColor=$0000BE00
 
 [Comparison Options]
 ComparisonOptions0=Kind=Net|MinPercent=75|MinMatch=3|ShowMatch=-1|Confirm=-1|UseName=-1|InclAllRules=0
