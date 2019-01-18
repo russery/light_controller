@@ -1,3 +1,6 @@
 */History/*
 */__Previews/*
 *.PrjPcbStructure
+/software/curiosity_board.X/build/
+/software/curiosity_board.X/dist/
+.DS_Store
