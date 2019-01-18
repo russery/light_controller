@@ -1,5 +1,11 @@
 */History/*
 */__Previews/*
 *.PrjPcbStructure
+<<<<<<< HEAD
 Status Report.txt
 
+=======
+/software/curiosity_board.X/build/
+/software/curiosity_board.X/dist/
+.DS_Store
+>>>>>>> 7860597aac6591a861a1372206f1f379d8a1f56b
