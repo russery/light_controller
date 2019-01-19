@@ -51,17 +51,24 @@ void SYSTEM_Initialize(void)
 {
     PIN_MANAGER_Initialize();
     OSCILLATOR_Initialize();
+    PWM3_Initialize();
+    TMR2_Initialize();
     TMR0_Initialize();
+    CWG_Initialize();
 }
 
 void OSCILLATOR_Initialize(void)
 {
-    // SCS FOSC; SPLLEN disabled; IRCF 500KHz_MF; 
-    OSCCON = 0x38;
+    // SCS FOSC; SPLLEN disabled; IRCF 16MHz_HF; 
+    OSCCON = 0x78;
     // TUN 0; 
     OSCTUNE = 0x00;
     // SBOREN disabled; BORFS disabled; 
     BORCON = 0x00;
+    // Wait for PLL to stabilize
+    while(PLLR == 0)
+    {
+    }
 }
 
 

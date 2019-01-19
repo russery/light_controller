@@ -51,7 +51,10 @@
 #include "pin_manager.h"
 #include <stdint.h>
 #include <stdbool.h>
+#include "pwm3.h"
+#include "tmr2.h"
 #include "tmr0.h"
+#include "cwg.h"
 
 
 
