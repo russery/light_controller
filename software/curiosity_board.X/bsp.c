@@ -18,6 +18,7 @@ void BspSetLedPin(uint8_t bus, uint8_t pin, uint8_t state){
                 else
                     LED_Drive1_SetHigh();
             }
+            break;
         case 1:
             if(pin == 0){
                 if(state == 0)
@@ -30,5 +31,6 @@ void BspSetLedPin(uint8_t bus, uint8_t pin, uint8_t state){
                 else
                     LED_Drive3_SetHigh();
             }
+            break;
     }
 }
