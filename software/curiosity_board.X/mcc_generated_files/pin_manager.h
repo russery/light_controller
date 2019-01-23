@@ -136,6 +136,43 @@
 #define LED_Drive3_SetAnalogMode()      do { ANSELBbits.ANSB6 = 1; } while(0)
 #define LED_Drive3_SetDigitalMode()     do { ANSELBbits.ANSB6 = 0; } while(0)
 
+// get/set DEBUG aliases
+#define DEBUG_TRIS                 TRISBbits.TRISB7
+#define DEBUG_LAT                  LATBbits.LATB7
+#define DEBUG_PORT                 PORTBbits.RB7
+#define DEBUG_WPU                  WPUBbits.WPUB7
+#define DEBUG_OD                   ODCONBbits.ODB7
+#define DEBUG_ANS                  ANSELBbits.ANSB7
+#define DEBUG_SetHigh()            do { LATBbits.LATB7 = 1; } while(0)
+#define DEBUG_SetLow()             do { LATBbits.LATB7 = 0; } while(0)
+#define DEBUG_Toggle()             do { LATBbits.LATB7 = ~LATBbits.LATB7; } while(0)
+#define DEBUG_GetValue()           PORTBbits.RB7
+#define DEBUG_SetDigitalInput()    do { TRISBbits.TRISB7 = 1; } while(0)
+#define DEBUG_SetDigitalOutput()   do { TRISBbits.TRISB7 = 0; } while(0)
+#define DEBUG_SetPullup()          do { WPUBbits.WPUB7 = 1; } while(0)
+#define DEBUG_ResetPullup()        do { WPUBbits.WPUB7 = 0; } while(0)
+#define DEBUG_SetPushPull()        do { ODCONBbits.ODB7 = 0; } while(0)
+#define DEBUG_SetOpenDrain()       do { ODCONBbits.ODB7 = 1; } while(0)
+#define DEBUG_SetAnalogMode()      do { ANSELBbits.ANSB7 = 1; } while(0)
+#define DEBUG_SetDigitalMode()     do { ANSELBbits.ANSB7 = 0; } while(0)
+
+// get/set MODE_BTTN aliases
+#define MODE_BTTN_TRIS                 TRISCbits.TRISC4
+#define MODE_BTTN_LAT                  LATCbits.LATC4
+#define MODE_BTTN_PORT                 PORTCbits.RC4
+#define MODE_BTTN_WPU                  WPUCbits.WPUC4
+#define MODE_BTTN_OD                   ODCONCbits.ODC4
+#define MODE_BTTN_SetHigh()            do { LATCbits.LATC4 = 1; } while(0)
+#define MODE_BTTN_SetLow()             do { LATCbits.LATC4 = 0; } while(0)
+#define MODE_BTTN_Toggle()             do { LATCbits.LATC4 = ~LATCbits.LATC4; } while(0)
+#define MODE_BTTN_GetValue()           PORTCbits.RC4
+#define MODE_BTTN_SetDigitalInput()    do { TRISCbits.TRISC4 = 1; } while(0)
+#define MODE_BTTN_SetDigitalOutput()   do { TRISCbits.TRISC4 = 0; } while(0)
+#define MODE_BTTN_SetPullup()          do { WPUCbits.WPUC4 = 1; } while(0)
+#define MODE_BTTN_ResetPullup()        do { WPUCbits.WPUC4 = 0; } while(0)
+#define MODE_BTTN_SetPushPull()        do { ODCONCbits.ODC4 = 0; } while(0)
+#define MODE_BTTN_SetOpenDrain()       do { ODCONCbits.ODC4 = 1; } while(0)
+
 // get/set LED_Drive1 aliases
 #define LED_Drive1_TRIS                 TRISCbits.TRISC5
 #define LED_Drive1_LAT                  LATCbits.LATC5

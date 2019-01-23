@@ -32,6 +32,8 @@
       <itemPath>led_driver.h</itemPath>
       <itemPath>led_driver.c</itemPath>
       <itemPath>bsp.c</itemPath>
+      <itemPath>button_driver.c</itemPath>
+      <itemPath>button_driver.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

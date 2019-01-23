@@ -1,4 +1,3 @@
-
 #include "mcc_generated_files/mcc.h"
 #include "bsp.h"
 
@@ -33,4 +32,59 @@ void BspSetLedPin(uint8_t bus, uint8_t pin, uint8_t state){
             }
             break;
     }
+}
+
+bool BspIsButtonPressed(BUTTON_t button){
+    if(button > BUTTON_COUNT)
+        return false;
+    switch(button){
+        case MODE_BUTTON:
+            return (bool)(MODE_BTTN_GetValue() == BUTTON_PRESSED);
+        //case POWER_BUTTON:
+        //    return (bool)POWER_BTTN_GetValue();
+        default:
+            return false;
+    }
+}
+
+void BspSetDebugPin(bool state){
+    if(state)
+        DEBUG_SetHigh();
+    else
+        DEBUG_SetLow();
+}
+
+void BspSetDebugLed(bool state){
+    if(!state){ // Inverted operation, 0 = lit
+        LED0_SetLow();
+    } else {
+        LED0_SetHigh();
+    }
+}
+
+void BspDoGlowDebugLed(void){
+    static uint16_t count = 0;
+    static uint8_t index = 0;
+    static const uint8_t MAX_ONTIME = 25;
+    static const uint8_t ON_TIME[] = {
+        1,3,5,7,9,11,13,14,16,17,19,20,21,22,23,23,24,24,24,25,24,
+        24,24,23,23,22,21,20,19,17,16,14,13,11,9,7,5,3,1};
+    static const uint8_t LEN_ONTIME = sizeof(ON_TIME);
+    count++;
+    if(count == ON_TIME[index]){
+        BspSetDebugLed(0);
+    }
+    else if(count > MAX_ONTIME){
+        count = 0;
+        BspSetDebugLed(1);
+        if(++index >= LEN_ONTIME){
+            index = 0;
+        }
+    }
+}
+
+void BspDo1ms(void){
+    while(!TMR0_HasOverflowOccured());
+    TMR0_Reload();
+    INTCONbits.TMR0IF = 0; // Clear TMR0 interrupt flag
 }
