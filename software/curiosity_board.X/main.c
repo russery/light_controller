@@ -6,6 +6,7 @@
 #include "bsp.h"
 #include "led_driver.h"
 #include "button_driver.h"
+#include "microphone.h"
 
 void do1ms(void);
 

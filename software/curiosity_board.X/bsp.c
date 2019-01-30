@@ -104,10 +104,11 @@ void BspDoAdc(void){
         case kStartConversion:    
             switch(current_channel){
                 case kMicChannel:
-                    ADC_StartConversion(MIC);
+                    ADC_SelectChannel(MIC);
                     break;
                 // TODO Other channels
             }
+            ADC_StartConversion();
             adc_stage++;
             break;
         case kWaitConversion:
