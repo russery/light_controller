@@ -71,18 +71,18 @@ bool testWait(uint16_t max_counter){
 }
 
 void TestLedDriver(void){    
-    typedef enum test_state_enum {
-            SWEEP_BRIGHTNESS_UP,
-            SWEEP_BRIGHTNESS_DOWN,
-            SWEEP_PHASE_BRIGHTNESS_UP,
-            TEST_STATE_MAX,
-    } test_state_t;
-    static test_state_t test_state = 0;
+    typedef enum TestState {
+            kSweepBrightnessUp,
+            kSweepBrightnessDown,
+            kSweepPhaseBrightnessUp,
+            kTestStateMax,
+    } TestState_t;
+    static TestState_t test_state = 0;
     static uint8_t active_bus = 0;
     static uint8_t brightness = 0;
     
     switch(test_state){
-    case SWEEP_BRIGHTNESS_UP:
+    case kSweepBrightnessUp:
         SetGlobalBrightness(brightness);
         if(testWait(10))
             brightness++;
@@ -90,7 +90,7 @@ void TestLedDriver(void){
             test_state++;
         }
         break;
-    case SWEEP_BRIGHTNESS_DOWN:
+    case kSweepBrightnessDown:
         SetGlobalBrightness(brightness);
         if(testWait(10))
             brightness--;
@@ -98,7 +98,7 @@ void TestLedDriver(void){
             test_state++;
         }
         break;
-    case SWEEP_PHASE_BRIGHTNESS_UP:
+    case kSweepPhaseBrightnessUp:
         SetPhaseBrightness(active_bus, 0, brightness);
         SetPhaseBrightness(active_bus, 1, 100-brightness);
         if(testWait(10))
@@ -109,7 +109,7 @@ void TestLedDriver(void){
         }
         break;
     // TODO Test SetMaxBrightness()
-    case TEST_STATE_MAX:
+    case kTestStateMax:
         if(++active_bus >= LED_BUS_COUNT)
             active_bus = 0;
         test_state = 0;

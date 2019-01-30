@@ -20,6 +20,7 @@ void main(void){
     
     while(1){
         TestLedDriver();
+        TestMicrophone();
         DoButtons();
         DoLeds();
         BspDoGlowDebugLed();

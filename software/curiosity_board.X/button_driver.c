@@ -8,26 +8,26 @@ typedef struct button_state {
     uint16_t press_time;
     bool state;
 } button_state_t;
-static button_state_t ButtonState[BUTTON_COUNT] = {
+static button_state_t ButtonState[kButtonCount] = {
     {0, 10, 0, 0}, // TODO create an initializer to set debounce threshold
 };
 
-bool GetButtonState(BUTTON_t button){
+bool GetButtonState(Button_t button){
     return ButtonState[button].state;
 }
 
-uint16_t GetButtonPressTime(BUTTON_t button){
+uint16_t GetButtonPressTime(Button_t button){
     return ButtonState[button].press_time;
 }
 
-void ClearButtonPressTime(BUTTON_t button){
+void ClearButtonPressTime(Button_t button){
     ButtonState[button].press_time = 0;
 }
 
 void DoButtons(void){
     button_state_t *b;
     bool butt_state;
-    for(int butt=0; butt<BUTTON_COUNT; butt++){
+    for(int butt=0; butt<kButtonCount; butt++){
         b = &ButtonState[butt];
         butt_state = BspIsButtonPressed(butt);
         if(butt_state != b->state) {
@@ -47,31 +47,31 @@ void DoButtons(void){
 }
 
 void TestButtonDriver(void){
-    static const uint16_t HOLD_TIME_THRESHOLD_MS = 3000;
-    static const BUTTON_t TEST_BUTT = MODE_BUTTON;
+    static const uint16_t kHoldTimeThresholdMs = 3000;
+    static const Button_t kTestButt = kModeButton;
     static enum {
-                LIGHT_LED,
-                GLOW_LED,
-                EXIT_TESTS,
-    }test_mode;
+                kLightLed,
+                kGlowLed,
+                kRestartTest,
+    } test_mode;
     
     for(uint16_t i=0; i<60000; i++){ // Loop for 60s
         switch(test_mode){
-            case LIGHT_LED:
-                BspSetDebugLed(GetButtonState(TEST_BUTT));
-                if(GetButtonPressTime(TEST_BUTT) > HOLD_TIME_THRESHOLD_MS){
+            case kLightLed:
+                BspSetDebugLed(GetButtonState(kTestButt));
+                if(GetButtonPressTime(kTestButt) > kHoldTimeThresholdMs){
                     test_mode++;
-                    ClearButtonPressTime(TEST_BUTT);
+                    ClearButtonPressTime(kTestButt);
                 }
                 break;
-            case GLOW_LED:
+            case kGlowLed:
                 BspDoGlowDebugLed();
-                if(GetButtonPressTime(TEST_BUTT) > HOLD_TIME_THRESHOLD_MS){
+                if(GetButtonPressTime(kTestButt) > kHoldTimeThresholdMs){
                     test_mode++;
-                    ClearButtonPressTime(TEST_BUTT);
+                    ClearButtonPressTime(kTestButt);
                 }
                 break;
-            case EXIT_TESTS:
+            case kRestartTest:
                 test_mode = 0;
         }
         DoButtons();

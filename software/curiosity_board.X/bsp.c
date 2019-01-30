@@ -1,6 +1,8 @@
 #include "mcc_generated_files/mcc.h"
 #include "bsp.h"
 
+static uint16_t adc_result_[kAdcChannelCount] = {0};
+
 void BspSetLedPin(uint8_t bus, uint8_t pin, uint8_t state){
     if((bus >= LED_BUS_COUNT) || (pin >= 2))
         return;
@@ -34,12 +36,12 @@ void BspSetLedPin(uint8_t bus, uint8_t pin, uint8_t state){
     }
 }
 
-bool BspIsButtonPressed(BUTTON_t button){
-    if(button > BUTTON_COUNT)
+bool BspIsButtonPressed(Button_t button){
+    if(button > kButtonCount)
         return false;
     switch(button){
-        case MODE_BUTTON:
-            return (bool)(MODE_BTTN_GetValue() == BUTTON_PRESSED);
+        case kModeButton:
+            return (bool)(MODE_BTTN_GetValue() == kButtonPressed);
         //case POWER_BUTTON:
         //    return (bool)POWER_BTTN_GetValue();
         default:
@@ -87,4 +89,35 @@ void BspDo1ms(void){
     while(!TMR0_HasOverflowOccured());
     TMR0_Reload();
     INTCONbits.TMR0IF = 0; // Clear TMR0 interrupt flag
+}
+
+uint16_t BspGetAdcValue(AdcChannel_t channel){
+    return adc_result_[channel];
+}
+
+void BspDoAdc(void){
+    static AdcChannel_t current_channel = 0;
+    
+    static enum {kStartConversion, kWaitConversion} adc_stage;
+    
+    switch(adc_stage) {
+        case kStartConversion:    
+            switch(current_channel){
+                case kMicChannel:
+                    ADC_StartConversion(MIC);
+                    break;
+                // TODO Other channels
+            }
+            adc_stage++;
+            break;
+        case kWaitConversion:
+            if(ADC_IsConversionDone()) {
+                adc_result_[current_channel] = ADC_GetConversionResult();
+                current_channel = (++current_channel == kAdcChannelCount) ?
+                    0 : current_channel;
+                adc_stage = kStartConversion;
+            } else {
+                break;
+            }
+    }
 }

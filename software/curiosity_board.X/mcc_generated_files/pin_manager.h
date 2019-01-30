@@ -79,6 +79,18 @@
 #define LED_Drive0_SetAnalogMode()      do { ANSELAbits.ANSA2 = 1; } while(0)
 #define LED_Drive0_SetDigitalMode()     do { ANSELAbits.ANSA2 = 0; } while(0)
 
+// get/set RA4 procedures
+#define RA4_SetHigh()            do { LATAbits.LATA4 = 1; } while(0)
+#define RA4_SetLow()             do { LATAbits.LATA4 = 0; } while(0)
+#define RA4_Toggle()             do { LATAbits.LATA4 = ~LATAbits.LATA4; } while(0)
+#define RA4_GetValue()              PORTAbits.RA4
+#define RA4_SetDigitalInput()    do { TRISAbits.TRISA4 = 1; } while(0)
+#define RA4_SetDigitalOutput()   do { TRISAbits.TRISA4 = 0; } while(0)
+#define RA4_SetPullup()             do { WPUAbits.WPUA4 = 1; } while(0)
+#define RA4_ResetPullup()           do { WPUAbits.WPUA4 = 0; } while(0)
+#define RA4_SetAnalogMode()         do { ANSELAbits.ANSA4 = 1; } while(0)
+#define RA4_SetDigitalMode()        do { ANSELAbits.ANSA4 = 0; } while(0)
+
 // get/set LED0 aliases
 #define LED0_TRIS                 TRISAbits.TRISA5
 #define LED0_LAT                  LATAbits.LATA5
@@ -155,6 +167,26 @@
 #define DEBUG_SetOpenDrain()       do { ODCONBbits.ODB7 = 1; } while(0)
 #define DEBUG_SetAnalogMode()      do { ANSELBbits.ANSB7 = 1; } while(0)
 #define DEBUG_SetDigitalMode()     do { ANSELBbits.ANSB7 = 0; } while(0)
+
+// get/set MIC aliases
+#define MIC_TRIS                 TRISCbits.TRISC0
+#define MIC_LAT                  LATCbits.LATC0
+#define MIC_PORT                 PORTCbits.RC0
+#define MIC_WPU                  WPUCbits.WPUC0
+#define MIC_OD                   ODCONCbits.ODC0
+#define MIC_ANS                  ANSELCbits.ANSC0
+#define MIC_SetHigh()            do { LATCbits.LATC0 = 1; } while(0)
+#define MIC_SetLow()             do { LATCbits.LATC0 = 0; } while(0)
+#define MIC_Toggle()             do { LATCbits.LATC0 = ~LATCbits.LATC0; } while(0)
+#define MIC_GetValue()           PORTCbits.RC0
+#define MIC_SetDigitalInput()    do { TRISCbits.TRISC0 = 1; } while(0)
+#define MIC_SetDigitalOutput()   do { TRISCbits.TRISC0 = 0; } while(0)
+#define MIC_SetPullup()          do { WPUCbits.WPUC0 = 1; } while(0)
+#define MIC_ResetPullup()        do { WPUCbits.WPUC0 = 0; } while(0)
+#define MIC_SetPushPull()        do { ODCONCbits.ODC0 = 0; } while(0)
+#define MIC_SetOpenDrain()       do { ODCONCbits.ODC0 = 1; } while(0)
+#define MIC_SetAnalogMode()      do { ANSELCbits.ANSC0 = 1; } while(0)
+#define MIC_SetDigitalMode()     do { ANSELCbits.ANSC0 = 0; } while(0)
 
 // get/set MODE_BTTN aliases
 #define MODE_BTTN_TRIS                 TRISCbits.TRISC4
