@@ -7,3 +7,5 @@ Status Report.txt
 .DS_Store
 /software/light_controller.X/build/
 /software/light_controller.X/dist/
+/software/controller_board.X/build/
+/software/controller_board.X/dist/
