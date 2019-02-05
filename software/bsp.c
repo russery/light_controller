@@ -47,8 +47,8 @@ bool BspIsButtonPressed(Button_t button){
         case kModeButton:
             return (bool)(MODE_BTTN_GetValue() == kButtonPressed);
 #ifdef CONTROLLER_BOARD
-        case kPowerButton:
-            return (bool)PWR_BTTN_GetValue();
+//        case kPowerButton:
+//            return (bool)PWR_BTTN_GetValue();
 #endif
         default:
             return false;
@@ -56,12 +56,10 @@ bool BspIsButtonPressed(Button_t button){
 }
 
 void BspSetDebugPin(bool state){
-#ifdef CURIOSITY_BOARD
     if(state)
         DEBUG_SetHigh();
     else
         DEBUG_SetLow();
-#endif
 }
 
 void BspSetDebugLed(bool state){
