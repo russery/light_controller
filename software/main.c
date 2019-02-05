@@ -24,7 +24,6 @@ void main(void){
         TestMicrophone();
         DoButtons();
         DoLeds();
-        BspDoGlowDebugLed();
         BspDo1ms(); // Main loop should execute on a 1ms loop.
     }
 }

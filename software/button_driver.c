@@ -49,23 +49,27 @@ void DoButtons(void){
 void TestButtonDriver(void){
     static const uint16_t kHoldTimeThresholdMs = 3000;
     static const Button_t kTestButt = kModeButton;
+    static bool debug_state = false;
     static enum {
-                kLightLed,
-                kGlowLed,
+                kTrackButton,
+                kPulseOutput,
                 kRestartTest,
     } test_mode;
     
     for(uint16_t i=0; i<60000; i++){ // Loop for 60s
         switch(test_mode){
-            case kLightLed:
-                BspSetDebugLed(GetButtonState(kTestButt));
+            case kTrackButton:
+                // Debug output tracks button state.
+                BspSetDebugPin(GetButtonState(kTestButt));
                 if(GetButtonPressTime(kTestButt) > kHoldTimeThresholdMs){
                     test_mode++;
                     ClearButtonPressTime(kTestButt);
                 }
                 break;
-            case kGlowLed:
-                BspDoGlowDebugLed();
+            case kPulseOutput:
+                // Debug output toggles each cycle.
+                debug_state = ~debug_state;
+                BspSetDebugPin(debug_state);
                 if(GetButtonPressTime(kTestButt) > kHoldTimeThresholdMs){
                     test_mode++;
                     ClearButtonPressTime(kTestButt);
