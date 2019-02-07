@@ -7,35 +7,40 @@
 
 static uint16_t adc_result_[kAdcChannelCount] = {0};
 
-void BspSetLedPin(uint8_t bus, uint8_t pin, uint8_t state){
-    if((bus >= LED_BUS_COUNT) || (pin >= 2))
-        return;
-    switch(bus){
-        case 0:
-            if(pin == 0){
-                if(state == 0)
-                    LED_Drive0_SetLow();
-                else
-                    LED_Drive0_SetHigh();
-            } else {
-                if(state == 0)
-                    LED_Drive1_SetLow();
-                else
-                    LED_Drive1_SetHigh();
+void BspSetHBridgePin(HBridge_t bus, HBridgeFet_t fet, bool state){
+    switch(bus) {
+        case kHBridge1:
+            switch(fet) {
+                case kFet1:
+                    if(state)
+                        B1FET1_SetHigh();
+                    else
+                        B1FET1_SetLow();
+                    break;
+                case kFet2:
+                    if(state)
+                        B1FET2_SetHigh();
+                    else
+                        B1FET2_SetLow();
+                    break;
+                case kFet3:
+                    if(state)
+                        B1FET3_SetHigh();
+                    else
+                        B1FET3_SetLow();
+                    break;
+                case kFet4:
+                    if(state)
+                        B1FET4_SetHigh();
+                    else
+                        B1FET4_SetLow();
+                    break;
+                case kFetCount:
+                default:
+                    break;
             }
             break;
-        case 1:
-            if(pin == 0){
-                if(state == 0)
-                    LED_Drive2_SetLow();
-                else
-                    LED_Drive2_SetHigh();
-            } else {
-                if(state == 0)
-                    LED_Drive3_SetLow();
-                else
-                    LED_Drive3_SetHigh();
-            }
+        default:
             break;
     }
 }

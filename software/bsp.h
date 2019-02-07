@@ -5,18 +5,16 @@
 #ifndef BSP_H
 #define	BSP_H
 
-#define LED_BUS_COUNT 2
-void BspSetLedPin(uint8_t bus, uint8_t pin, uint8_t state);
+#define kHBridgeCount 1
+typedef enum HBridge {kHBridge1=0} HBridge_t;
+typedef enum HBridgeFet {kFet1, kFet2, kFet3, kFet4, kFetCount} HBridgeFet_t;
+void BspSetHBridgePin(HBridge_t bus, HBridgeFet_t fet, bool state);
 
 typedef enum Button {kModeButton, kPowerButton, kButtonCount} Button_t; 
 #define kButtonPressed 0
 bool BspIsButtonPressed(Button_t button);
 
-
 void BspSetDebugPin(bool state);
-void BspSetDebugLed(bool state);
-void BspDoGlowDebugLed(void);
-
 
 typedef enum AdcChannel {kMicChannel, kLightChannel,
         kAdcChannelCount} AdcChannel_t;

@@ -139,85 +139,85 @@
 #define MIC_SetAnalogMode()      do { ANSELBbits.ANSB7 = 1; } while(0)
 #define MIC_SetDigitalMode()     do { ANSELBbits.ANSB7 = 0; } while(0)
 
-// get/set LED_Drive1 aliases
-#define LED_Drive1_TRIS                 TRISCbits.TRISC3
-#define LED_Drive1_LAT                  LATCbits.LATC3
-#define LED_Drive1_PORT                 PORTCbits.RC3
-#define LED_Drive1_WPU                  WPUCbits.WPUC3
-#define LED_Drive1_OD                   ODCONCbits.ODCC3
-#define LED_Drive1_ANS                  ANSELCbits.ANSC3
-#define LED_Drive1_SetHigh()            do { LATCbits.LATC3 = 1; } while(0)
-#define LED_Drive1_SetLow()             do { LATCbits.LATC3 = 0; } while(0)
-#define LED_Drive1_Toggle()             do { LATCbits.LATC3 = ~LATCbits.LATC3; } while(0)
-#define LED_Drive1_GetValue()           PORTCbits.RC3
-#define LED_Drive1_SetDigitalInput()    do { TRISCbits.TRISC3 = 1; } while(0)
-#define LED_Drive1_SetDigitalOutput()   do { TRISCbits.TRISC3 = 0; } while(0)
-#define LED_Drive1_SetPullup()          do { WPUCbits.WPUC3 = 1; } while(0)
-#define LED_Drive1_ResetPullup()        do { WPUCbits.WPUC3 = 0; } while(0)
-#define LED_Drive1_SetPushPull()        do { ODCONCbits.ODCC3 = 0; } while(0)
-#define LED_Drive1_SetOpenDrain()       do { ODCONCbits.ODCC3 = 1; } while(0)
-#define LED_Drive1_SetAnalogMode()      do { ANSELCbits.ANSC3 = 1; } while(0)
-#define LED_Drive1_SetDigitalMode()     do { ANSELCbits.ANSC3 = 0; } while(0)
+// get/set B1FET2 aliases
+#define B1FET2_TRIS                 TRISCbits.TRISC3
+#define B1FET2_LAT                  LATCbits.LATC3
+#define B1FET2_PORT                 PORTCbits.RC3
+#define B1FET2_WPU                  WPUCbits.WPUC3
+#define B1FET2_OD                   ODCONCbits.ODCC3
+#define B1FET2_ANS                  ANSELCbits.ANSC3
+#define B1FET2_SetHigh()            do { LATCbits.LATC3 = 1; } while(0)
+#define B1FET2_SetLow()             do { LATCbits.LATC3 = 0; } while(0)
+#define B1FET2_Toggle()             do { LATCbits.LATC3 = ~LATCbits.LATC3; } while(0)
+#define B1FET2_GetValue()           PORTCbits.RC3
+#define B1FET2_SetDigitalInput()    do { TRISCbits.TRISC3 = 1; } while(0)
+#define B1FET2_SetDigitalOutput()   do { TRISCbits.TRISC3 = 0; } while(0)
+#define B1FET2_SetPullup()          do { WPUCbits.WPUC3 = 1; } while(0)
+#define B1FET2_ResetPullup()        do { WPUCbits.WPUC3 = 0; } while(0)
+#define B1FET2_SetPushPull()        do { ODCONCbits.ODCC3 = 0; } while(0)
+#define B1FET2_SetOpenDrain()       do { ODCONCbits.ODCC3 = 1; } while(0)
+#define B1FET2_SetAnalogMode()      do { ANSELCbits.ANSC3 = 1; } while(0)
+#define B1FET2_SetDigitalMode()     do { ANSELCbits.ANSC3 = 0; } while(0)
 
-// get/set LED_Drive2 aliases
-#define LED_Drive2_TRIS                 TRISCbits.TRISC4
-#define LED_Drive2_LAT                  LATCbits.LATC4
-#define LED_Drive2_PORT                 PORTCbits.RC4
-#define LED_Drive2_WPU                  WPUCbits.WPUC4
-#define LED_Drive2_OD                   ODCONCbits.ODCC4
-#define LED_Drive2_ANS                  ANSELCbits.ANSC4
-#define LED_Drive2_SetHigh()            do { LATCbits.LATC4 = 1; } while(0)
-#define LED_Drive2_SetLow()             do { LATCbits.LATC4 = 0; } while(0)
-#define LED_Drive2_Toggle()             do { LATCbits.LATC4 = ~LATCbits.LATC4; } while(0)
-#define LED_Drive2_GetValue()           PORTCbits.RC4
-#define LED_Drive2_SetDigitalInput()    do { TRISCbits.TRISC4 = 1; } while(0)
-#define LED_Drive2_SetDigitalOutput()   do { TRISCbits.TRISC4 = 0; } while(0)
-#define LED_Drive2_SetPullup()          do { WPUCbits.WPUC4 = 1; } while(0)
-#define LED_Drive2_ResetPullup()        do { WPUCbits.WPUC4 = 0; } while(0)
-#define LED_Drive2_SetPushPull()        do { ODCONCbits.ODCC4 = 0; } while(0)
-#define LED_Drive2_SetOpenDrain()       do { ODCONCbits.ODCC4 = 1; } while(0)
-#define LED_Drive2_SetAnalogMode()      do { ANSELCbits.ANSC4 = 1; } while(0)
-#define LED_Drive2_SetDigitalMode()     do { ANSELCbits.ANSC4 = 0; } while(0)
+// get/set B1FET3 aliases
+#define B1FET3_TRIS                 TRISCbits.TRISC4
+#define B1FET3_LAT                  LATCbits.LATC4
+#define B1FET3_PORT                 PORTCbits.RC4
+#define B1FET3_WPU                  WPUCbits.WPUC4
+#define B1FET3_OD                   ODCONCbits.ODCC4
+#define B1FET3_ANS                  ANSELCbits.ANSC4
+#define B1FET3_SetHigh()            do { LATCbits.LATC4 = 1; } while(0)
+#define B1FET3_SetLow()             do { LATCbits.LATC4 = 0; } while(0)
+#define B1FET3_Toggle()             do { LATCbits.LATC4 = ~LATCbits.LATC4; } while(0)
+#define B1FET3_GetValue()           PORTCbits.RC4
+#define B1FET3_SetDigitalInput()    do { TRISCbits.TRISC4 = 1; } while(0)
+#define B1FET3_SetDigitalOutput()   do { TRISCbits.TRISC4 = 0; } while(0)
+#define B1FET3_SetPullup()          do { WPUCbits.WPUC4 = 1; } while(0)
+#define B1FET3_ResetPullup()        do { WPUCbits.WPUC4 = 0; } while(0)
+#define B1FET3_SetPushPull()        do { ODCONCbits.ODCC4 = 0; } while(0)
+#define B1FET3_SetOpenDrain()       do { ODCONCbits.ODCC4 = 1; } while(0)
+#define B1FET3_SetAnalogMode()      do { ANSELCbits.ANSC4 = 1; } while(0)
+#define B1FET3_SetDigitalMode()     do { ANSELCbits.ANSC4 = 0; } while(0)
 
-// get/set LED_Drive3 aliases
-#define LED_Drive3_TRIS                 TRISCbits.TRISC5
-#define LED_Drive3_LAT                  LATCbits.LATC5
-#define LED_Drive3_PORT                 PORTCbits.RC5
-#define LED_Drive3_WPU                  WPUCbits.WPUC5
-#define LED_Drive3_OD                   ODCONCbits.ODCC5
-#define LED_Drive3_ANS                  ANSELCbits.ANSC5
-#define LED_Drive3_SetHigh()            do { LATCbits.LATC5 = 1; } while(0)
-#define LED_Drive3_SetLow()             do { LATCbits.LATC5 = 0; } while(0)
-#define LED_Drive3_Toggle()             do { LATCbits.LATC5 = ~LATCbits.LATC5; } while(0)
-#define LED_Drive3_GetValue()           PORTCbits.RC5
-#define LED_Drive3_SetDigitalInput()    do { TRISCbits.TRISC5 = 1; } while(0)
-#define LED_Drive3_SetDigitalOutput()   do { TRISCbits.TRISC5 = 0; } while(0)
-#define LED_Drive3_SetPullup()          do { WPUCbits.WPUC5 = 1; } while(0)
-#define LED_Drive3_ResetPullup()        do { WPUCbits.WPUC5 = 0; } while(0)
-#define LED_Drive3_SetPushPull()        do { ODCONCbits.ODCC5 = 0; } while(0)
-#define LED_Drive3_SetOpenDrain()       do { ODCONCbits.ODCC5 = 1; } while(0)
-#define LED_Drive3_SetAnalogMode()      do { ANSELCbits.ANSC5 = 1; } while(0)
-#define LED_Drive3_SetDigitalMode()     do { ANSELCbits.ANSC5 = 0; } while(0)
+// get/set B1FET4 aliases
+#define B1FET4_TRIS                 TRISCbits.TRISC5
+#define B1FET4_LAT                  LATCbits.LATC5
+#define B1FET4_PORT                 PORTCbits.RC5
+#define B1FET4_WPU                  WPUCbits.WPUC5
+#define B1FET4_OD                   ODCONCbits.ODCC5
+#define B1FET4_ANS                  ANSELCbits.ANSC5
+#define B1FET4_SetHigh()            do { LATCbits.LATC5 = 1; } while(0)
+#define B1FET4_SetLow()             do { LATCbits.LATC5 = 0; } while(0)
+#define B1FET4_Toggle()             do { LATCbits.LATC5 = ~LATCbits.LATC5; } while(0)
+#define B1FET4_GetValue()           PORTCbits.RC5
+#define B1FET4_SetDigitalInput()    do { TRISCbits.TRISC5 = 1; } while(0)
+#define B1FET4_SetDigitalOutput()   do { TRISCbits.TRISC5 = 0; } while(0)
+#define B1FET4_SetPullup()          do { WPUCbits.WPUC5 = 1; } while(0)
+#define B1FET4_ResetPullup()        do { WPUCbits.WPUC5 = 0; } while(0)
+#define B1FET4_SetPushPull()        do { ODCONCbits.ODCC5 = 0; } while(0)
+#define B1FET4_SetOpenDrain()       do { ODCONCbits.ODCC5 = 1; } while(0)
+#define B1FET4_SetAnalogMode()      do { ANSELCbits.ANSC5 = 1; } while(0)
+#define B1FET4_SetDigitalMode()     do { ANSELCbits.ANSC5 = 0; } while(0)
 
-// get/set LED_Drive0 aliases
-#define LED_Drive0_TRIS                 TRISCbits.TRISC6
-#define LED_Drive0_LAT                  LATCbits.LATC6
-#define LED_Drive0_PORT                 PORTCbits.RC6
-#define LED_Drive0_WPU                  WPUCbits.WPUC6
-#define LED_Drive0_OD                   ODCONCbits.ODCC6
-#define LED_Drive0_ANS                  ANSELCbits.ANSC6
-#define LED_Drive0_SetHigh()            do { LATCbits.LATC6 = 1; } while(0)
-#define LED_Drive0_SetLow()             do { LATCbits.LATC6 = 0; } while(0)
-#define LED_Drive0_Toggle()             do { LATCbits.LATC6 = ~LATCbits.LATC6; } while(0)
-#define LED_Drive0_GetValue()           PORTCbits.RC6
-#define LED_Drive0_SetDigitalInput()    do { TRISCbits.TRISC6 = 1; } while(0)
-#define LED_Drive0_SetDigitalOutput()   do { TRISCbits.TRISC6 = 0; } while(0)
-#define LED_Drive0_SetPullup()          do { WPUCbits.WPUC6 = 1; } while(0)
-#define LED_Drive0_ResetPullup()        do { WPUCbits.WPUC6 = 0; } while(0)
-#define LED_Drive0_SetPushPull()        do { ODCONCbits.ODCC6 = 0; } while(0)
-#define LED_Drive0_SetOpenDrain()       do { ODCONCbits.ODCC6 = 1; } while(0)
-#define LED_Drive0_SetAnalogMode()      do { ANSELCbits.ANSC6 = 1; } while(0)
-#define LED_Drive0_SetDigitalMode()     do { ANSELCbits.ANSC6 = 0; } while(0)
+// get/set B1FET1 aliases
+#define B1FET1_TRIS                 TRISCbits.TRISC6
+#define B1FET1_LAT                  LATCbits.LATC6
+#define B1FET1_PORT                 PORTCbits.RC6
+#define B1FET1_WPU                  WPUCbits.WPUC6
+#define B1FET1_OD                   ODCONCbits.ODCC6
+#define B1FET1_ANS                  ANSELCbits.ANSC6
+#define B1FET1_SetHigh()            do { LATCbits.LATC6 = 1; } while(0)
+#define B1FET1_SetLow()             do { LATCbits.LATC6 = 0; } while(0)
+#define B1FET1_Toggle()             do { LATCbits.LATC6 = ~LATCbits.LATC6; } while(0)
+#define B1FET1_GetValue()           PORTCbits.RC6
+#define B1FET1_SetDigitalInput()    do { TRISCbits.TRISC6 = 1; } while(0)
+#define B1FET1_SetDigitalOutput()   do { TRISCbits.TRISC6 = 0; } while(0)
+#define B1FET1_SetPullup()          do { WPUCbits.WPUC6 = 1; } while(0)
+#define B1FET1_ResetPullup()        do { WPUCbits.WPUC6 = 0; } while(0)
+#define B1FET1_SetPushPull()        do { ODCONCbits.ODCC6 = 0; } while(0)
+#define B1FET1_SetOpenDrain()       do { ODCONCbits.ODCC6 = 1; } while(0)
+#define B1FET1_SetAnalogMode()      do { ANSELCbits.ANSC6 = 1; } while(0)
+#define B1FET1_SetDigitalMode()     do { ANSELCbits.ANSC6 = 0; } while(0)
 
 // get/set REMOTE aliases
 #define REMOTE_TRIS                 TRISCbits.TRISC7

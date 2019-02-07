@@ -17,11 +17,11 @@ void main(void){
 
     InitializeLeds();
     
-    TestButtonDriver();
+    //TestButtonDriver();
     
     while(1){
         TestLedDriver();
-        TestMicrophone();
+        //TestMicrophone();
         DoButtons();
         DoLeds();
         BspDo1ms(); // Main loop should execute on a 1ms loop.
