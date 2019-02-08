@@ -14,10 +14,11 @@ typedef enum Button {kModeButton, kPowerButton, kButtonCount} Button_t;
 #define kButtonPressed 0
 bool BspIsButtonPressed(Button_t button);
 
-void BspSetDebugPin(bool state);
+void BspWriteDebugByteAndWait(unsigned char bug);
 
 typedef enum AdcChannel {kMicChannel, kLightChannel,
         kAdcChannelCount} AdcChannel_t;
+uint16_t BspGetAdcValue(AdcChannel_t channel);
 
 
 void BspDo1ms(void);

@@ -6,6 +6,7 @@
 #include "bsp.h"
 #include "led_driver.h"
 #include "button_driver.h"
+#include "light_sense.h"
 #include "microphone.h"
 
 void do1ms(void);
@@ -22,6 +23,7 @@ void main(void){
     while(1){
         TestLedDriver();
         //TestMicrophone();
+        TestLightSense();
         DoButtons();
         DoLeds();
         BspDo1ms(); // Main loop should execute on a 1ms loop.

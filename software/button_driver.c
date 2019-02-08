@@ -60,7 +60,7 @@ void TestButtonDriver(void){
         switch(test_mode){
             case kTrackButton:
                 // Debug output tracks button state.
-                BspSetDebugPin(GetButtonState(kTestButt));
+                BspWriteDebugByteAndWait(GetButtonState(kTestButt));
                 if(GetButtonPressTime(kTestButt) > kHoldTimeThresholdMs){
                     test_mode++;
                     ClearButtonPressTime(kTestButt);
@@ -69,7 +69,7 @@ void TestButtonDriver(void){
             case kPulseOutput:
                 // Debug output toggles each cycle.
                 debug_state = ~debug_state;
-                BspSetDebugPin(debug_state);
+                BspWriteDebugByteAndWait(debug_state);
                 if(GetButtonPressTime(kTestButt) > kHoldTimeThresholdMs){
                     test_mode++;
                     ClearButtonPressTime(kTestButt);

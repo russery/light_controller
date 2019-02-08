@@ -99,25 +99,17 @@
 #define MODE_BTTN_SetAnalogMode()      do { ANSELBbits.ANSB5 = 1; } while(0)
 #define MODE_BTTN_SetDigitalMode()     do { ANSELBbits.ANSB5 = 0; } while(0)
 
-// get/set DEBUG aliases
-#define DEBUG_TRIS                 TRISBbits.TRISB6
-#define DEBUG_LAT                  LATBbits.LATB6
-#define DEBUG_PORT                 PORTBbits.RB6
-#define DEBUG_WPU                  WPUBbits.WPUB6
-#define DEBUG_OD                   ODCONBbits.ODCB6
-#define DEBUG_ANS                  ANSELBbits.ANSB6
-#define DEBUG_SetHigh()            do { LATBbits.LATB6 = 1; } while(0)
-#define DEBUG_SetLow()             do { LATBbits.LATB6 = 0; } while(0)
-#define DEBUG_Toggle()             do { LATBbits.LATB6 = ~LATBbits.LATB6; } while(0)
-#define DEBUG_GetValue()           PORTBbits.RB6
-#define DEBUG_SetDigitalInput()    do { TRISBbits.TRISB6 = 1; } while(0)
-#define DEBUG_SetDigitalOutput()   do { TRISBbits.TRISB6 = 0; } while(0)
-#define DEBUG_SetPullup()          do { WPUBbits.WPUB6 = 1; } while(0)
-#define DEBUG_ResetPullup()        do { WPUBbits.WPUB6 = 0; } while(0)
-#define DEBUG_SetPushPull()        do { ODCONBbits.ODCB6 = 0; } while(0)
-#define DEBUG_SetOpenDrain()       do { ODCONBbits.ODCB6 = 1; } while(0)
-#define DEBUG_SetAnalogMode()      do { ANSELBbits.ANSB6 = 1; } while(0)
-#define DEBUG_SetDigitalMode()     do { ANSELBbits.ANSB6 = 0; } while(0)
+// get/set RB6 procedures
+#define RB6_SetHigh()            do { LATBbits.LATB6 = 1; } while(0)
+#define RB6_SetLow()             do { LATBbits.LATB6 = 0; } while(0)
+#define RB6_Toggle()             do { LATBbits.LATB6 = ~LATBbits.LATB6; } while(0)
+#define RB6_GetValue()              PORTBbits.RB6
+#define RB6_SetDigitalInput()    do { TRISBbits.TRISB6 = 1; } while(0)
+#define RB6_SetDigitalOutput()   do { TRISBbits.TRISB6 = 0; } while(0)
+#define RB6_SetPullup()             do { WPUBbits.WPUB6 = 1; } while(0)
+#define RB6_ResetPullup()           do { WPUBbits.WPUB6 = 0; } while(0)
+#define RB6_SetAnalogMode()         do { ANSELBbits.ANSB6 = 1; } while(0)
+#define RB6_SetDigitalMode()        do { ANSELBbits.ANSB6 = 0; } while(0)
 
 // get/set MIC aliases
 #define MIC_TRIS                 TRISBbits.TRISB7

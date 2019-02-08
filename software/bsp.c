@@ -7,6 +7,8 @@
 
 static uint16_t adc_result_[kAdcChannelCount] = {0};
 
+void BspDoAdc(void);
+
 void BspSetHBridgePin(HBridge_t bus, HBridgeFet_t fet, bool state){
     switch(bus) {
         case kHBridge1:
@@ -60,14 +62,18 @@ bool BspIsButtonPressed(Button_t button){
     }
 }
 
-void BspSetDebugPin(bool state){
-    if(state)
-        DEBUG_SetHigh();
-    else
-        DEBUG_SetLow();
+void BspWriteDebugByteAndWait(unsigned char bug){
+    while(!EUSART_is_tx_ready());
+    EUSART_Write(bug);
+    while(!EUSART_is_tx_done());
 }
 
 void BspDo1ms(void){
+    BspDoAdc(); // Update ADC on every loop
+    
+    if(TMR0_HasOverflowOccured()){
+        //TODO do something if we overrun the main loop timer
+    }
     while(!TMR0_HasOverflowOccured());
 #ifdef CURIOSITY_BOARD
     TMR0_Reload();
@@ -94,17 +100,21 @@ void BspDoAdc(void){
                 case kMicChannel:
                     ADC_SelectChannel(MIC);
                     break;
-                // TODO Other channels
+                case kLightChannel:
+                    ADC_SelectChannel(LIGHT);
+                    break;
             }
             ADC_StartConversion();
             adc_stage++;
             break;
         case kWaitConversion:
             if(ADC_IsConversionDone()) {
-                adc_result_[current_channel] = ADC_GetConversionResult();
+                adc_result_[current_channel] = (
+                        (ADC_GetConversionResult() >> 6 ) & 0x3FF);
                 current_channel = (++current_channel == kAdcChannelCount) ?
                     0 : current_channel;
                 adc_stage = kStartConversion;
+                BspWriteDebugByteAndWait(adc_result_[current_channel] >> 2);
             } else {
                 break;
             }
