@@ -9,3 +9,7 @@ Status Report.txt
 /software/light_controller.X/dist/
 /software/controller_board.X/build/
 /software/controller_board.X/dist/
+/software/button_remote/button_remote.X/dist/
+/software/button_remote/button_remote.X/build/
+/software/controller_board/controller_board.X/build/
+/software/controller_board/controller_board.X/dist/
