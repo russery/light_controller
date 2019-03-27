@@ -120,3 +120,7 @@ void BspDoAdc(void){
             }
     }
 }
+
+void BspSetRFTimerISR(void (* handle)(void)){
+    TMR2_SetInterruptHandler(handle);
+}

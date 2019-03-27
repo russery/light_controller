@@ -20,6 +20,8 @@ typedef enum AdcChannel {kMicChannel, kLightChannel,
         kAdcChannelCount} AdcChannel_t;
 uint16_t BspGetAdcValue(AdcChannel_t channel);
 
+void BspSetRFTimerISR(void (* handle)(void));
+#define BspGetRfPinState() REMOTE_GetValue()
 
 void BspDo1ms(void);
 
