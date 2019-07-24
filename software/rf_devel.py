@@ -85,17 +85,17 @@ kMaxBitDuration_us = 60.0
 kMinCorrelation = int(kMaxBitDuration_us/kLoopDuration_us*0.8)
 kMaxSampleCnt = int(kMaxBitDuration_us/kLoopDuration_us * 5) # Need to store up to five bit periods of data
 sb = SampleBuffer(kMaxSampleCnt+1)
-kStates = ['kWaitRisingEdge', 'kSync', 'kAlign', 'kFinishPreamble', 'kData']
 kPreambleLen = 20
-kDataLen = 16
-state_ = kStates[0]
+kLengthLen = 4
+state_ = 'kWaitRisingEdge'
 samples_remaining_ = 0
 bit_offset = 0
 bit_dur = 1
 bit_cnt = 0
 data = 0
+length_bytes = 0
 def DoRfReceive():	
-	global state_, sb, samples_remaining_, bit_offset, bit_dur, bit_cnt, data
+	global state_, sb, samples_remaining_, bit_offset, bit_dur, bit_cnt, data, length_bytes
 	#TODO Make sure interrupts are disabled when we're doing this for real to avoid conflicts on sample buffer
 	if state_ == 'kWaitRisingEdge':
 		if sb.peek() == 1:
@@ -141,8 +141,8 @@ def DoRfReceive():
 			if ProcessSample(sb.vals[0:bit_dur*2]) == 0: # Received stop bit.
 				print('Detected Start bit')
 				bit_cnt = 0
-				data = 0
-				state_ = 'kData'
+				length_bytes = 0
+				state_ = 'kLength'
 			else:
 				bit_cnt += 1
 				if bit_cnt > kPreambleLen:
@@ -150,15 +150,26 @@ def DoRfReceive():
 					state_ = 'kWaitRisingEdge'
 			sb.flush()
 		# TODO Periodically re-sync on edges? Depending on how well aligned we are this might not be necessary.
+	
+	elif state_ == 'kLength':
+		if sb.cnt == bit_dur * 2:
+			bit_cnt += 1
+			bit = ProcessSample(sb.vals[0:bit_dur*2])
+			length_bytes = (length_bytes << 1) + bit
+			if bit_cnt == kLengthLen:
+				print('Received Length {}'.format(length_bytes))
+				bit_cnt = 0
+				data = 0
+				state_ = 'kData'
+			sb.flush()
 
 	elif state_ == 'kData':
 		if sb.cnt == bit_dur * 2:
 			bit_cnt += 1
 			bit = ProcessSample(sb.vals[0:bit_dur*2])
-			data = data << 1
-			data += bit
+			data = (data << 1) + bit
 			print("{} Got data bit 0b{:b}".format(bit_cnt, bit))
-			if bit_cnt == (kDataLen + 1): # Received all data and parity bit
+			if bit_cnt == (length_bytes*8 + 1): # Received all data and parity bit
 				# Check parity:
 				p = 0
 				d = data >> 1
