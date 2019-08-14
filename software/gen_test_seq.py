@@ -1,8 +1,8 @@
 import random as r
 import crc8
 
-InjectNoise = True
-AutoGenData = True
+InjectNoise = False
+AutoGenData = False
 
 kPreambleLen = 20
 kDataLenMax = 0xF

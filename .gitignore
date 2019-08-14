@@ -13,3 +13,4 @@ Status Report.txt
 /software/button_remote/button_remote.X/build/
 /software/controller_board/controller_board.X/build/
 /software/controller_board/controller_board.X/dist/
+*.o
