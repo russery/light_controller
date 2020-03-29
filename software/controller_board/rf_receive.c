@@ -23,7 +23,7 @@ uint8_t data_buffer_head_byte_ = 0;
 
 //extern uint8_t BspGetRfPinState(void);
 void RfIsr(void);
-bool PeekDataBuffer(uint8_t* data_byte);
+bool PeekDataBuffer(uint8_t* data_byte, uint8_t offset);
 uint8_t DataBufferByteCount(void);
 bool PopDataBuffer(uint8_t* data_byte);
 
@@ -89,9 +89,9 @@ void DoRfReceive(void){
     while(DataBufferByteCount() >= kPacketLen){
         switch(receive_state) {
             case kSyncToBitstream:
-                PopDataBuffer((uint8_t)(&buffer_bytes+2)); // Dequeue the first byte
-                PeekDataBuffer((uint8_t)(&buffer_bytes+1), 1); // Keep the second and third bytes in queue
-                PeekDataBuffer((uint8_t)(&buffer_bytes), 2);
+                PopDataBuffer((uint8_t*)(&buffer_bytes+2)); // Dequeue the first byte
+                PeekDataBuffer((uint8_t*)(&buffer_bytes+1), 1); // Keep the second and third bytes in queue
+                PeekDataBuffer((uint8_t*)(&buffer_bytes), 2);
                 for(int i=0; i<8; i++){
                     check_pattern = (uint16_t)(buffer_bytes >> (16-i));
                     if(check_pattern == kPreamblePattern) {
@@ -152,5 +152,10 @@ void TestRfReceive(void){
             }
             test_state++; 
             INTERRUPT_GlobalInterruptEnable();
+            break;
+        case kTestStateMax:
+            // intentional fallthrough
+        default:
+            return;
     }
 }

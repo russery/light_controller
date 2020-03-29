@@ -14,18 +14,18 @@
 void main(void){
     // initialize the device
     SYSTEM_Initialize();
-    //INTERRUPT_GlobalInterruptEnable();
-    //INTERRUPT_PeripheralInterruptEnable();
+    INTERRUPT_GlobalInterruptEnable();
+    INTERRUPT_PeripheralInterruptEnable();
     InitializeRf();
     InitializeLeds();
     
-    TestRfReceive();
+    //TestRfReceive();
     //TestButtonDriver();
     
     while(1){
-        TestLedDriver();
+        //TestLedDriver();
         //TestMicrophone();
-        TestLightSense();
+        //TestLightSense();
         DoButtons();
         DoLeds();
         DoRfReceive();

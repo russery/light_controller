@@ -103,6 +103,10 @@ void BspDoAdc(void){
                 case kLightChannel:
                     ADC_SelectChannel(LIGHT);
                     break;
+                case kAdcChannelCount:
+                    // intentional fallthrough
+                default:
+                    return;
             }
             ADC_StartConversion();
             adc_stage++;

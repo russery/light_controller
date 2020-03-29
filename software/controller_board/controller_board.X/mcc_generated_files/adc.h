@@ -192,7 +192,7 @@ void ADC_SelectChannel(adc_channel_t channel);
     convertedValue = ADC_GetConversionResult();
     </code>
 */
-void ADC_StartConversion();
+void ADC_StartConversion(void);
 
 /**
   @Summary
@@ -224,7 +224,7 @@ void ADC_StartConversion();
     convertedValue = ADC_GetConversionResult();
     </code>
  */
-bool ADC_IsConversionDone();
+bool ADC_IsConversionDone(void);
 
 /**
   @Summary

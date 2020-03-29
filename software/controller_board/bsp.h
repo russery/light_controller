@@ -16,8 +16,7 @@ bool BspIsButtonPressed(Button_t button);
 
 void BspWriteDebugByteAndWait(unsigned char bug);
 
-typedef enum AdcChannel {kMicChannel, kLightChannel,
-        kAdcChannelCount} AdcChannel_t;
+typedef enum AdcChannel {kMicChannel, kLightChannel, kAdcChannelCount} AdcChannel_t;
 uint16_t BspGetAdcValue(AdcChannel_t channel);
 
 void BspSetRFTimerISR(void (* handle)(void));
