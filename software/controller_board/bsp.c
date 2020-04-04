@@ -118,7 +118,7 @@ void BspDoAdc(void){
                 current_channel = (++current_channel == kAdcChannelCount) ?
                     0 : current_channel;
                 adc_stage = kStartConversion;
-                BspWriteDebugByteAndWait(adc_result_[current_channel] >> 2);
+                //BspWriteDebugByteAndWait(adc_result_[current_channel] >> 2);
             } else {
                 break;
             }

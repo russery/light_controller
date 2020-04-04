@@ -56,6 +56,7 @@ void InitializeRf(void){
 
 
 void DoRfReceive(void){
+    printf("d");
     enum {
         kSyncToBitstream,
         kCheckSum
@@ -66,11 +67,11 @@ void DoRfReceive(void){
             0, 1, 1, 2, 1, 2, 2, 3, 1, 2, 2, 3, 2, 3, 3, 4,
             1, 2, 2, 3, 2, 3, 3, 4, 2, 3, 3, 4, 3, 4, 4, 5
         };
-        // INTERRUPT_PeripheralInterruptDisable(); // Critical section
+        INTERRUPT_PeripheralInterruptDisable(); // Critical section
         uint8_t bits = raw_buffer_ & kBitAverageMask;
         raw_buffer_ = raw_buffer_ >> kBitAverageCnt;
         raw_buffer_tail_ -= kBitAverageCnt;
-        // INTERRUPT_PeripheralInterruptEnable(); // Critical section end
+        INTERRUPT_PeripheralInterruptEnable(); // Critical section end
         // Average bits and push into data buffer
         data_buffer_[data_buffer_tail_byte_] +=
                 kNumSetBits[bits] > kBitAverageThreshold ?
@@ -112,6 +113,8 @@ void DoRfReceive(void){
 }
 
 void RfIsr(void){
+    B1FET2_Toggle();
+    B1FET4_Toggle();
     raw_buffer_ = (raw_buffer_ << 1) + BspGetRfPinState();
     raw_buffer_tail_++;
 }

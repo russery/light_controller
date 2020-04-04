@@ -18,7 +18,8 @@ void main(void){
     INTERRUPT_PeripheralInterruptEnable();
     InitializeRf();
     InitializeLeds();
-    
+    printf("Started up successfully!");
+
     //TestRfReceive();
     //TestButtonDriver();
     
@@ -26,8 +27,8 @@ void main(void){
         //TestLedDriver();
         //TestMicrophone();
         //TestLightSense();
-        DoButtons();
-        DoLeds();
+        //DoButtons();
+        //DoLeds();
         DoRfReceive();
         BspDo1ms(); // Main loop should execute on a 1ms loop.
     }

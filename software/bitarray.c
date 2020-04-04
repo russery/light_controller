@@ -35,7 +35,7 @@ BitErrCode_t BitArrayPop(BitArray_t* a_p, bit_t* b_p) {
 	return kErrOk;
 }
 
-BitErrCode_t BitArrayPeek(BitArray_t* a_p, bit_t* b_p){
+BitErrCode_t BitArrayPeek(BitArray_t* a_p, bit_t* b_p, uint8_t offset){
 	if(BitArrayIsEmpty(a_p)){
 		return kErrEmpty;
 	}
@@ -104,7 +104,6 @@ void TestBitArray(void) {
 			b_read3 = b_read2;
 		}
 	}
-
 	printf("Done Testing\r\n");
 }
 #endif // TEST

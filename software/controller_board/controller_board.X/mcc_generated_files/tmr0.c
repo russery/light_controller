@@ -64,8 +64,8 @@ void TMR0_Initialize(void)
     // T0CS FOSC/4; T0CKPS 1:8; T0ASYNC synchronised; 
     T0CON1 = 0x43;
 
-    // TMR0H 249; 
-    TMR0H = 0xF9;
+    // TMR0H 255; 
+    TMR0H = 0xFF;
 
     // TMR0L 0; 
     TMR0L = 0x00;
