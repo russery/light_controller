@@ -53,7 +53,6 @@
       <itemPath>../light_sense.h</itemPath>
       <itemPath>../rf_receive.c</itemPath>
       <itemPath>../rf_receive.h</itemPath>
-      <itemPath>main.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
