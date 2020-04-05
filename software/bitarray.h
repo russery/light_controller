@@ -10,7 +10,7 @@
 #define kBitArrayLen 256 // Must be a power of two because of how read/write index wrapping works
 
 
-typedef enum {kErrOk=0, kErrFull, kErrEmpty} BitErrCode_t;
+typedef enum {kErrOk=0, kErrFull, kErrEmpty, kErrOutOfRange} BitErrCode_t;
 
 typedef uint8_t bit_t;
 typedef uint16_t BitArrayLen_t;
@@ -22,7 +22,7 @@ typedef struct {
 
 BitErrCode_t BitArrayPush(BitArray_t* a_p, bit_t b);
 BitErrCode_t BitArrayPop(BitArray_t* a_p, bit_t* b_p);
-BitErrCode_t BitArrayPeek(BitArray_t* a_p, bit_t* b, uint8_t offset=0);
+BitErrCode_t BitArrayPeek(BitArray_t* a_p, bit_t* b, BitArrayLen_t offset);
 bool BitArrayIsEmpty(BitArray_t* a_p);
 bool BitArrayIsFull(BitArray_t* a_p);
 BitArrayLen_t BitArraySize(BitArray_t* a_p);
