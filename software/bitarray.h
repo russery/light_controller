@@ -23,6 +23,7 @@ typedef struct {
 BitErrCode_t BitArrayPush(BitArray_t* a_p, bit_t b);
 BitErrCode_t BitArrayPop(BitArray_t* a_p, bit_t* b_p);
 BitErrCode_t BitArrayPeek(BitArray_t* a_p, bit_t* b, BitArrayLen_t offset);
+void BitArrayFlush(BitArray_t* a_p);
 bool BitArrayIsEmpty(BitArray_t* a_p);
 bool BitArrayIsFull(BitArray_t* a_p);
 BitArrayLen_t BitArraySize(BitArray_t* a_p);

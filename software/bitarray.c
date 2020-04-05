@@ -47,6 +47,10 @@ BitErrCode_t BitArrayPeek(BitArray_t* a_p, bit_t* b_p, BitArrayLen_t offset){
 	return kErrOk;
 }
 
+void BitArrayFlush(BitArray_t* a_p){
+	a_p->read = a_p->write;
+}
+
 bool BitArrayIsEmpty(BitArray_t* a_p) {
 	return a_p->read == a_p->write;
 }
@@ -147,6 +151,11 @@ void TestBitArray(void) {
 	// Try reading one more, verify it's reported as out-of-range
 	ret = BitArrayPeek(&ba2, &b_read1, bits_written);
 	assert(ret == kErrOutOfRange);
+
+	printf("**** Testing Flush ****\r\n");
+	assert(BitArraySize(&ba2) > 0);
+	BitArrayFlush(&ba2);
+	assert(BitArraySize(&ba2) == 0);
 
 	printf("Done Testing\r\n");
 }
