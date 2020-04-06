@@ -136,10 +136,6 @@ void DoRfReceive(void){
     switch (state){
         case kSync:
             // Detect phase and duration of the received signal clock
-            // Wait for a rising edge
-            BitArrayPeek(&sample_buffer_, &sample, 0);
-            while (sample == 0)
-                BitArrayPop(&sample_buffer_, &sample); 
             // Wait until we have at least a worst-case preamble's worth of samples
             if(BitArraySize(&sample_buffer_) > kPreambleCorrelationLen_symbols * kMaxSymbolDuration*2) {
                 // Find best correlation for the samples we've received
@@ -157,7 +153,7 @@ void DoRfReceive(void){
                     statebits_received = 0;
                     state = kFinishPreamble;
                 } else {
-                    // Correlation not good enough, drop edge and try again
+                    // Correlation not good enough, drop sample and try again
                     BitArrayPop(&sample_buffer_, &sample); 
                 }
             }

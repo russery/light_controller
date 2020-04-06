@@ -2,7 +2,7 @@ import random as r
 import crc8
 
 InjectNoise = True
-AutoGenData = False
+AutoGenData = True
 
 kPreambleLen = 20
 kDataLenMax = 0xF
@@ -58,7 +58,7 @@ output = ""
 # Add random duration of random noise in front of data
 noise_dur_s = 0.0
 if InjectNoise:
-	noise_dur_s = r.randrange(kBitDuration_us*10, kBitDuration_us*100, 1)/1e6
+	noise_dur_s = r.randrange(kBitDuration_us*10, kBitDuration_us*1000, 1)/1e6
 	print("Injecting {} sec of noise ahead of data".format(noise_dur_s))
 	while time < noise_dur_s:
 		output += "{}, {}, {}\r\n".format(time, r.choice(['0','1']), 'pre-noise')
@@ -86,7 +86,7 @@ for x in bintext_manchester:
 
 # Add random duration of random noise behind data
 if InjectNoise:
-	noise_dur_s = r.randrange(kBitDuration_us*10, kBitDuration_us*100, 1)/1e6
+	noise_dur_s = r.randrange(kBitDuration_us*10, kBitDuration_us*1000, 1)/1e6
 	end_time = time + noise_dur_s
 	print("Injecting {} sec of noise behind data".format(noise_dur_s))
 	while time < end_time:
