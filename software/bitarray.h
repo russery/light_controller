@@ -5,8 +5,6 @@
 
 #include <stdbool.h>
 
-#define TEST
-
 #define kBitArrayLen 256 // Must be a power of two because of how read/write index wrapping works
 
 

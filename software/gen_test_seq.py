@@ -1,7 +1,7 @@
 import random as r
 import crc8
 
-InjectNoise = False
+InjectNoise = True
 AutoGenData = False
 
 kPreambleLen = 20
@@ -20,7 +20,7 @@ else:
 print("data:\n0x{:0{l}X}\n".format(data, l=data_len))
 
 # Calculate crc on just data segment
-crc = int(crc8.crc8(data.to_bytes(data_len, 'little')).digest().hex(), 16)
+crc = int(crc8.crc8(data.to_bytes(data_len, 'big')).digest().hex(), 16)
 print("CRC8 is 0x{:X}".format(crc))
 crc = "{:0{l}b}".format(crc, l=8)
 
@@ -73,16 +73,16 @@ for x in bintext_manchester:
 	time = next_time
 	next_time = time + (kBitDuration_us / 1e6)
 	output += "{}, {}, {}\r\n".format(time, x, 'data')
-	if InjectNoise:
-		# Add noise (random number of bits of random duration < bit duration)
-		noise_bit_count = r.randrange(0,10,1)
-		for _ in range(0,noise_bit_count):
-			time = time + (r.randrange(0,kBitDuration_us) / 1e6)
-			end_time = time + (r.randrange(0,kBitDuration_us/5) / 1e6)
-			if end_time >= next_time:
-				break
-			output += "{}, {}, {}\r\n".format(time, r.choice(['0','1']), 'noise')
-			output += "{}, {}, {}\r\n".format(end_time, x, 'un-noise') # return to data value after noise bit
+	# if InjectNoise:
+	# 	# Add noise (random number of bits of random duration < bit duration)
+	# 	noise_bit_count = r.randrange(0,10,1)
+	# 	for _ in range(0,noise_bit_count):
+	# 		time = time + (r.randrange(0,kBitDuration_us) / 1e6)
+	# 		end_time = time + (r.randrange(0,kBitDuration_us/5) / 1e6)
+	# 		if end_time >= next_time:
+	# 			break
+	# 		output += "{}, {}, {}\r\n".format(time, r.choice(['0','1']), 'noise')
+	# 		output += "{}, {}, {}\r\n".format(end_time, x, 'un-noise') # return to data value after noise bit
 
 # Add random duration of random noise behind data
 if InjectNoise:

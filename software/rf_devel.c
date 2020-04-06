@@ -4,7 +4,6 @@
 #include "crc.h"
 #include "bitarray.h"
 
-//#define TEST
 
 #define INTERRUPT_PeripheralInterruptEnable() while(0)
 #define INTERRUPT_PeripheralInterruptDisable() while(0)
@@ -13,8 +12,9 @@
 
 #define kMinSymbolDuration 4
 #define kMaxSymbolDuration 6
-#define kPreambleCorrelationLen_symbols 20
-#define kMinCorrelation (10 * (kPreambleCorrelationLen_symbols * 90 / 100)) // Need at least 90% of bits
+#define kPreambleMinBits 10
+#define kPreambleCorrelationLen_symbols (kPreambleMinBits * 2)
+#define kMinCorrelation (10 * (kPreambleCorrelationLen_symbols * 95 / 100)) // Need at least 95% of bits
 
 // Protocol definitions
 #define kMaxPreambleLen_bits 20
@@ -113,9 +113,9 @@ uint8_t ManchesterDecodeBitFromSamples(BitArray_t *p_samples, uint8_t duration) 
     }
 }
 
-void debug_dump_buffer(void){
+void debug_sample_buffer(void){
+    printf("\r\n");
     uint8_t sample;
-    printf("sample buffer:\r\n");
     for (int i=0; i<BitArraySize(&sample_buffer_); i++){
         BitArrayPeek(&sample_buffer_, &sample, i);
         printf("%d", sample);
@@ -124,7 +124,7 @@ void debug_dump_buffer(void){
 }
 
 void DoRfReceive(void){
-    static enum {kSync, kFinishPreamble, kLength, kData} state = kSync;
+    static enum {kSync, kFinishPreamble, kStartBit, kLength, kData} state = kSync;
     static uint8_t duration, phase;
     static uint8_t statebits_received;
     static uint8_t packet_len_bytes;
@@ -144,17 +144,17 @@ void DoRfReceive(void){
             if(BitArraySize(&sample_buffer_) > kPreambleCorrelationLen_symbols * kMaxSymbolDuration*2) {
                 // Find best correlation for the samples we've received
                 correlation = CheckPreambleCorrelation(&sample_buffer_, &duration, &phase);
-                printf("correlation: %d\r\n", correlation);
                 // See if it's good enough to treat as a real packet
                 if (correlation > kMinCorrelation) {
-                    printf("Found preamble with phase %d and duration %d\r\n",phase, duration);
+                    printf("Found preamble with phase %d and duration %d and correlation %d\r\n",phase, duration, correlation);
 
                     // Determine how many samples we need to advance to align sample buffer to signal phase
                     printf("Align by receiving %d more samples\r\n", phase);
                     for (int i=0; i< phase; i++){
                         BitArrayPop(&sample_buffer_, &sample);
                     }
-                    statebits_received = 0; // Initialize bit counter for preamble reception
+                    // Initialize bit counter for preamble reception
+                    statebits_received = 0;
                     state = kFinishPreamble;
                 } else {
                     // Correlation not good enough, drop edge and try again
@@ -163,6 +163,21 @@ void DoRfReceive(void){
             }
             break;
         case kFinishPreamble:
+            // Check that we've received some minimum number of preamble bits
+            if(BitArraySize(&sample_buffer_) > duration*2){
+                bit = ManchesterDecodeBitFromSamples(&sample_buffer_, duration);
+                if (bit != 1){
+                    printf("Invalid preamble bit, expected %d got %d\r\n", 1, bit);
+                    state = kSync;
+                }
+                if (++statebits_received == kPreambleMinBits) {
+                    statebits_received = 0;
+                    state = kStartBit;
+                }
+                // TODO Periodically re-sync on edges? Depending on how well aligned we are this might not be necessary. Might also accidentally sync to noise.
+            }
+            break;
+        case kStartBit:
             // Keep checking for start bit (manchester encoded 0), up to maximum length of preamble
             if(BitArraySize(&sample_buffer_) > duration*2){
                 bit = ManchesterDecodeBitFromSamples(&sample_buffer_, duration);
@@ -171,7 +186,7 @@ void DoRfReceive(void){
                     statebits_received = 0;
                     state = kLength;
                 }
-                if (++statebits_received > kMaxPreambleLen_bits) {
+                if (++statebits_received > (kMaxPreambleLen_bits)) {
                     printf("Error - received too many preamble bits (received %d), discarding packet\r\n",
                         statebits_received);
                     state = kSync;
