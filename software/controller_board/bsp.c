@@ -74,15 +74,10 @@ void BspDo1ms(void){
     if(TMR0_HasOverflowOccured()){
         //TODO do something if we overrun the main loop timer
     }
+    printf("a");
     while(!TMR0_HasOverflowOccured());
-#ifdef CURIOSITY_BOARD
-    TMR0_Reload();
-    INTCONbits.TMR0IF = 0; // Clear TMR0 interrupt flag
-#endif
-#ifdef CONTROLLER_BOARD
-    TMR0_Reload(0xF9); // 1ms reload
+    TMR0_Reload(0xDD); // 1ms reload
     PIR0bits.TMR0IF = 0;
-#endif
 }
 
 uint16_t BspGetAdcValue(AdcChannel_t channel){

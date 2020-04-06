@@ -61,11 +61,11 @@ void TMR0_Initialize(void)
 {
     // Set TMR0 to the options selected in the User Interface
 
-    // T0CS FOSC/4; T0CKPS 1:16; T0ASYNC synchronised; 
-    T0CON1 = 0x44;
+    // T0CS FOSC/4; T0CKPS 1:2; T0ASYNC synchronised; 
+    T0CON1 = 0x41;
 
-    // TMR0H 249; 
-    TMR0H = 0xF9;
+    // TMR0H 221; 
+    TMR0H = 0xDD;
 
     // TMR0L 0; 
     TMR0L = 0x00;
@@ -73,8 +73,8 @@ void TMR0_Initialize(void)
     // Clearing IF flag
     PIR0bits.TMR0IF = 0;
 
-    // T0OUTPS 1:1; T0EN enabled; T016BIT 8-bit; 
-    T0CON0 = 0x80;
+    // T0OUTPS 1:9; T0EN enabled; T016BIT 8-bit; 
+    T0CON0 = 0x88;
 }
 
 void TMR0_StartTimer(void)

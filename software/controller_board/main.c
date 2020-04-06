@@ -20,7 +20,7 @@ void main(void){
     InitializeLeds();
     printf("Started up successfully!");
 
-    //TestRfReceive();
+    TestRfReceive();
     //TestButtonDriver();
     
     while(1){

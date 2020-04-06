@@ -113,16 +113,6 @@ uint8_t ManchesterDecodeBitFromSamples(BitArray_t *p_samples, uint8_t duration) 
     }
 }
 
-void debug_sample_buffer(void){
-    printf("\r\n");
-    uint8_t sample;
-    for (int i=0; i<BitArraySize(&sample_buffer_); i++){
-        BitArrayPeek(&sample_buffer_, &sample, i);
-        printf("%d", sample);
-    }
-    printf("\r\n");
-}
-
 void DoRfReceive(void){
     static enum {kSync, kFinishPreamble, kStartBit, kLength, kData} state = kSync;
     static uint8_t duration, phase;
