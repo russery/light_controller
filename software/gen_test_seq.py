@@ -20,7 +20,7 @@ else:
 print("data:\n0x{:0{l}X}\n".format(data, l=data_len))
 
 # Calculate crc on just data segment
-crc = int(crc8.crc8(data.to_bytes(data_len, 'big')).digest().hex(), 16)
+crc = int(crc8.crc8(data.to_bytes(data_len, 'little')).digest().hex(), 16)
 print("CRC8 is 0x{:X}".format(crc))
 crc = "{:0{l}b}".format(crc, l=8)
 

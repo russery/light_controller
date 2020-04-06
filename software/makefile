@@ -1,7 +1,7 @@
 CC=gcc
 CFLAGS=-I.
-DEPS = bitarray.h
-OBJ = rf_devel.o bitarray.o 
+DEPS = bitarray.h crc.h
+OBJ = rf_devel.o bitarray.o crc.o
 
 %.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
